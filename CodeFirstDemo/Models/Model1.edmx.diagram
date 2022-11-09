@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="107cb8a35ff04e4abef7c8097bcf9148" Name="Diagram1">
+        <EntityTypeShape EntityType="CodeFirtDemoModel.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodeFirtDemoModel.Courses" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodeFirtDemoModel.Customers" Width="1.5" PointX="7" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodeFirtDemoModel.Enrollments" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodeFirtDemoModel.InvoiceDetails" Width="1.5" PointX="9.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodeFirtDemoModel.Invoices" Width="1.5" PointX="9.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodeFirtDemoModel.Products" Width="1.5" PointX="9.375" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodeFirtDemoModel.Sellers" Width="1.5" PointX="12.125" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodeFirtDemoModel.Students" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="CodeFirtDemoModel.FK_dbo_Enrollments_dbo_Courses_CourseID" ManuallyRouted="false" />
+        <AssociationConnector Association="CodeFirtDemoModel.FK_dbo_Customers_dbo_Invoices_Invoice_InvoiceID" ManuallyRouted="false" />
+        <AssociationConnector Association="CodeFirtDemoModel.FK_dbo_Enrollments_dbo_Students_StudentID" ManuallyRouted="false" />
+        <AssociationConnector Association="CodeFirtDemoModel.FK_dbo_Invoices_dbo_InvoiceDetails_InvoiceDetail_InvoiceDetailID" />
+        <AssociationConnector Association="CodeFirtDemoModel.FK_dbo_Invoices_dbo_Products_Product_ProductID" />
+        <AssociationConnector Association="CodeFirtDemoModel.FK_dbo_Invoices_dbo_Sellers_Seller_SellerID" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
