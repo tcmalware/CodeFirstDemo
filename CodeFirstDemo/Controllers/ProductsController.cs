@@ -115,6 +115,37 @@ namespace CodeFirstDemo.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Customers/Busqueda
+        public ActionResult Busqueda()
+        {
+            return View(db.Products.ToList());
+        }
+
+        public JsonResult GetSearchingData(string SearchBy, string SearchValue)
+        {
+            if (SearchBy == "id")
+            {
+                int Id = Convert.ToInt32(SearchValue);
+                List<Products> ProductList = db.Products.Where(x => x.ProductID == Id || SearchValue == null).ToList();
+                var subsubCategoryToReturn = ProductList.Select(S => new
+                {
+                    ProductID = S.ProductID,
+                    Name = S.Name,
+                });
+                return Json(subsubCategoryToReturn, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                List<Products> ProductList = db.Products.Where(x => x.Name.StartsWith(SearchValue) || SearchValue == null).ToList();
+                var subsubCategoryToReturn = ProductList.Select(S => new
+                {
+                    ProductID = S.ProductID,
+                    Name = S.Name,
+                });
+                return Json(subsubCategoryToReturn, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

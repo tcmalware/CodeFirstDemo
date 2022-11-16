@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using CodeFirstDemo.Models;
 
 namespace CodeFirstDemo.Controllers
@@ -118,6 +119,43 @@ namespace CodeFirstDemo.Controllers
             db.Customers.Remove(customers);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Customers/Busqueda
+        public ActionResult Busqueda()
+        {
+            var customers = db.Customers.Include(c => c.Invoices);
+            return View(customers.ToList());
+        }
+
+        public JsonResult GetSearchingData(string SearchBy, string SearchValue)
+        {
+            if (SearchBy == "id")
+            {
+                int Id = Convert.ToInt32(SearchValue);
+                List<Customers> CustomerList = db.Customers.Where(x => x.CustomerID == Id || SearchValue == null).ToList();
+                var subsubCategoryToReturn = CustomerList.Select(S => new
+                {
+                    CustomerID = S.CustomerID,
+                    Name = S.Name,
+                    LastName = S.LastName,
+                    DNI = S.DNI
+                });
+                return Json(subsubCategoryToReturn, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+
+                List<Customers> CustomerList = db.Customers.Where(x => x.Name.StartsWith(SearchValue) || SearchValue == null).ToList();
+                var subsubCategoryToReturn = CustomerList.Select(S => new
+                {
+                    CustomerID = S.CustomerID,
+                    Name = S.Name,
+                    LastName = S.LastName,
+                    DNI = S.DNI
+                });
+                return Json(subsubCategoryToReturn, JsonRequestBehavior.AllowGet);
+            }
         }
 
         protected override void Dispose(bool disposing)
